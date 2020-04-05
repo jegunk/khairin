@@ -2,7 +2,6 @@
 1. Berisi Nilai Barang
 - Harga Beli Barang dengan nilai yang terakumulasi
 2. Berisi Master Barang
-- Berisi datatables dari master barang
 3. Berisi Harga Beli
 - Berisi harga beli dari setiap Lot yang dibuat
 4. Berisi harga jual
