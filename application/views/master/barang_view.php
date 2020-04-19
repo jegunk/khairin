@@ -710,57 +710,68 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
+      <div class="container-hover">
         <div class="row">
-          <div class="col-md-7">
+          <div class="col-md-8">
             <!-- Default box -->
             <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">List Barang di Gudang</h3>
               </div>
               <div class="card-body">
-              <table id="example2" class="table table-bordered table-hover">
+              <div class="table-responsive">
+              <table id="#" class="table">
                 <thead>
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
+                  <th>Kode Barang</th>
+                  <th>Nama Barang</th>
+                  <th>Satuan</th>
+                  <th colspan="2">AKSI</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php
-                  foreach ($listbarang as $list) {
-                    echo "<tr>";
-                    echo "<td>$list->kode_barang</td>";
-                    echo "<td>$list->nama_barang</td>";
-                    echo "<td>$list->qty_awal</td>";
-                    echo "<td>$list->satuan</td>";
-                    echo "</tr>";
-                  }
-                  ?>
+                  foreach ($listbarang as $list) {?>
+                    <tr>
+                    <td><?php echo $list->kode_barang;?></td>
+                    <td><?php echo $list->nama_barang;?></td>
+                    <td><?php echo $list->satuan;?></td>
+                    <td><?php echo anchor('index.php/master/barang/edit/'.$list->kode_barang,'Edit');?></td>
+                    <td><?php echo anchor('index.php/master/barang/delete/'.$list->kode_barang,'Hapus');?></td>
+                    </tr>
+                 <?php }?>
                 </tfoot>
               </table>
               </div>
-              <!-- /.card-body -->
-              <div class="card-footer">
-                Copyright Agung 
               </div>
-              <!-- /.card-footer-->
             </div>
             <!-- /.card -->
           </div>
-          <div class="col -md-5">
+          <div class="col-sm-4">
             <div class="card card-primary">
               <div class="card-header">
                 <h2 class="card-title">Tambah Barang</h2>
                 </div>
                 <div class="card-body">
-                  Form Input Cepet nya disini 
+                  <form action="<?PHP echo base_url().'index.php/master/barang/add'; ?>" method="POST"/>
+                  <!-- text input -->
+                      <div class="form-group">
+                        <label>Kode Barang</label>
+                        <input type="text" class="form-control" placeholder="Masukkan Kode Barang" name="kodebarang">
+                        <label>Nama Barang</label>
+                        <input type="text" class="form-control" placeholder="Masukkan Nama Barang" name="namabarang">
+                        <label>Qty Stock Awal</label>
+                        <input type="text" class="form-control" placeholder="Masukkan Qty Stock Awal Barang" name="qtyawal">
+                        <label>Satuan Barang</label>
+                        <input type="text" class="form-control" placeholder="Masukkan Satuan Barang" name="satuan">
+
+                        </div>
+                         <div class="card-footer">
+                         <button type="submit" class="btn btn-primary">Tambah</button>
+                         <button type="reset" class="btn btn-danger">Hapus</button>
+                      </div>
                   </div>
-                  <!-- Body -->
-                  <div class="card-footer">
-                Copyright Agung 
+                  
               </div>
               <!-- /.card-footer-->
             </div>
@@ -807,18 +818,16 @@
 <!-- page script -->
 <script>
   $(function () {
-    $("#example1").DataTable({
-      "responsive": true,
-      "autoWidth": false,
-    });
-    $('#example2').DataTable({
+    $('#table1').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": true,
       "ordering": true,
       "info": false,
       "autoWidth": true,
-      "responsive": true,
+      responsive: {
+        details: false
+      }
     });
   });
 </script>
